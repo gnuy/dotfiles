@@ -1,0 +1,24 @@
+#!/bin/bash
+
+FILTERED_LIST=$(cat $HOME/.config/bday_cache)
+
+if [ $BLOCK_BUTTON ] && [ $BLOCK_BUTTON -eq 1 ]; then
+  notify-send -i $HOME/.config/cake.png  -u normal -t 4000 "Next Birthdays" "$(printf "%s\n" $FILTERED_LIST \
+    | sed  's/\_/\ /g' | sed 's/\:/\: /g')"
+else
+BDAY_LIST=$(cat $HOME/.config/bdays | \
+  grep "^$(date "+%_m/" | sed 's/\ //')\|^$(date "+%_m/" --date="+1 month" | sed 's/\ //')"
+)
+for i in $BDAY_LIST; do
+  DAY=$(echo $i|cut -d\/ -f2)
+  MONTH=$(echo $i|cut -d\/ -f1)
+  DATE=$(date "+%s" --date="$(printf "%s/%s/%s\n" "$MONTH" "$DAY" "$(date "+%Y")")")
+  if [ $DATE -le $(date "+%s" --date="+7 days") ] &&\
+    [ $DATE -ge  $(date "+%s" --date="-1 days")  ]; then
+    printf "%s:%s\n" $(date --date=@$DATE "+%d/%m") $(echo $i|cut -d\/ -f3) 
+  fi
+done > $HOME/.config/bday_cache
+fi
+if [ -s $HOME/.config/bday_cache ]; then
+  cat $HOME/.config/bday_cache | wc -l 
+fi

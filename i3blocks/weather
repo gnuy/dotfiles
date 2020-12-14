@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Script made by the boomer of Luke Smith. 
+# I made a little modification on the push notification. 
+geticon() {
+  STATUS=$(printf "%s" "$FORECAST" | head -1)
+
+  case $STATUS in 
+    Clear)
+      ICON="weather-clear" 
+    ;;
+    Sunny|"Partly cloudy")
+      ICON="weather-few-clouds"
+    ;;
+    *cloudy*|Cloudy|Overcast)
+      ICON="weather-overcast"
+    ;;
+    Mist|*sleet*)
+      ICON="weather-fog"
+    ;;
+    *thunder*)
+      ICON="weather-storm"
+    ;;
+    *snow*|*Snow*|*Ice*)
+      ICON="weather-snow"
+    ;;
+    "*Heavy rain*") 
+      ICON="weather-showers" 
+    ;;
+    *rain*|*drizzle*) 
+      ICON="weather-showers-scattered" 
+    ;;
+    *) 
+      ICON="user-invisible" 
+    ;;
+  esac
+}
+
+[ "$(stat -c %y /tmp/weatherreport | awk '{print $1}')" != "$(date '+%Y-%m-%d')" ] && getforecast
+
+if [ $BLOCK_BUTTON ] && [ $BLOCK_BUTTON -eq 1 ]; then
+# notify-send -u normal -t 4000 "$(cat /tmp/weatherreport | head -7 | tail -5 | sed 's/\x1b\[[0-9;]*m//g')"
+  FORECAST=$(curl -s 'wttr.in/Montevideo?0&Q&T' | sed -E 's/^.{15}//' | sed 's/\ *$//g')
+  geticon
+  notify-send -u normal -t 4000 -i $ICON "$FORECAST"
+fi
+
+echo "$(curl https://wttr.in/\?format\=%c++%t++%h++%w++%m)"
+
+#printf "%s" "$(sed '16q;d' /tmp/weatherreport | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/☔ /g" | tr -d '\n')"
+#sed '13q;d' /tmp/weatherreport | grep -o "m\\(-\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print " ❄️",$1 "°","🌞",$2 "°"}'
+
+
+

@@ -1,0 +1,5 @@
+#! /bin/zsh
+
+# echo $(( 1 / $(curl -s https://blockchain.info/tobtc\?currency\=USD\&value\=1) )) | cut -d\. -f1
+echo $(curl -s https://blockchain.info/frombtc\?currency\=USD\&value\=100000000)
+
