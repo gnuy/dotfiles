@@ -90,7 +90,7 @@ exec_always --no-startup-id dunst
 # exec --no-startup-id shutter
 
 # exec compton --config ~/.i3/compton.conf
-exec compton
+exec compton --backend glx --vsync opengl-swc -b
 
 #notifications
 exec /usr/lib/notification-daemon/notification-daemon 
@@ -119,8 +119,8 @@ bindsym $mod+Shift+w exec  surf web.whatsapp.com
  bindsym $mod+Shift+p exec "i3lock --color 000000"
 #bindsym $mod+Shift+p exec "i3lock  -e -t -i /home/gabrieln/Pictures/Wallpapers/BpTwvHA.png"
 
-set $monitor1 "eDP1"
-set $monitor2 "DP1"
+set $monitor1 "eDP-1"
+set $monitor2 "DP-1"
 set $monitor3 "HDMI1"
 
 workspace 1 output $monitor1 
@@ -263,8 +263,23 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-
 bindsym $mod+r mode "resize"
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Insert mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
