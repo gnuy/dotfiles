@@ -124,15 +124,9 @@ bindsym $mod+Shift+y exec surf $(xclip -selection clipboard -o)
  bindsym $mod+Shift+p exec "i3lock --color 000000"
 #bindsym $mod+Shift+p exec "i3lock  -e -t -i /home/gabrieln/Pictures/Wallpapers/BpTwvHA.png"
 
-<<<<<<< HEAD
-set $monitor1 "eDP1"
-set $monitor2 "HDMI1"
-set $monitor3 "DP1"
-=======
 set $monitor1 eDP-1
 set $monitor2 HDMI1 HDMI-2
 set $monitor3 DP-1
->>>>>>> 597040ea6b51715cd0fca823901074a384cabe78
 
 workspace 1 output $monitor1 
 workspace 2 output $monitor1 
