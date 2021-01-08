@@ -90,7 +90,7 @@ exec_always --no-startup-id dunst
 # exec --no-startup-id shutter
 
 # exec compton --config ~/.i3/compton.conf
-exec compton
+exec compton --backend glx --vsync opengl-swc -b
 
 #notifications
 exec /usr/lib/notification-daemon/notification-daemon 
@@ -116,13 +116,23 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 # Get XID
 bindsym $mod+x exec getxid
 
+# Abrir video youtube
+bindsym $mod+y exec mpv $(xclip -selection clipboard -o)
+bindsym $mod+Shift+y exec surf $(xclip -selection clipboard -o)
+
 # Bloquear PC
  bindsym $mod+Shift+p exec "i3lock --color 000000"
 #bindsym $mod+Shift+p exec "i3lock  -e -t -i /home/gabrieln/Pictures/Wallpapers/BpTwvHA.png"
 
+<<<<<<< HEAD
 set $monitor1 "eDP1"
 set $monitor2 "HDMI1"
 set $monitor3 "DP1"
+=======
+set $monitor1 eDP-1
+set $monitor2 HDMI1 HDMI-2
+set $monitor3 DP-1
+>>>>>>> 597040ea6b51715cd0fca823901074a384cabe78
 
 workspace 1 output $monitor1 
 workspace 2 output $monitor1 
@@ -146,7 +156,7 @@ workspace 🐮 output $monitor3
 bindsym $mod+Shift+n move container to workspace 🐮
 bindsym $mod+n workspace 🐮
 
-exec_always i3 gaps inner all plus 5
+# exec_always i3 gaps inner all plus 5
 
 # change focus
 bindsym $mod+h focus left
@@ -264,8 +274,23 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-
 bindsym $mod+r mode "resize"
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Insert mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
