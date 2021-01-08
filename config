@@ -109,19 +109,20 @@ bindsym Print exec gnome-screenshot
 bindsym $mod+Print exec gnome-screenshot -i
 bindsym $mod+Shift+Print exec deepin-screenshot
 
+# Brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-# Wasap
-bindsym $mod+Shift+w exec  surf web.whatsapp.com 
+# Get XID
+bindsym $mod+x exec getxid
 
 # Bloquear PC
  bindsym $mod+Shift+p exec "i3lock --color 000000"
 #bindsym $mod+Shift+p exec "i3lock  -e -t -i /home/gabrieln/Pictures/Wallpapers/BpTwvHA.png"
 
 set $monitor1 "eDP1"
-set $monitor2 "DP1"
-set $monitor3 "HDMI1"
+set $monitor2 "HDMI1"
+set $monitor3 "DP1"
 
 workspace 1 output $monitor1 
 workspace 2 output $monitor1 
