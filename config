@@ -113,7 +113,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Wasap
-bindsym $mod+Shift+w exec  surf web.whatsapp.com 
+# bindsym $mod+Shift+w exec  surf web.whatsapp.com 
 
 # Abrir video youtube
 bindsym $mod+y exec mpv $(xclip -selection clipboard -o)
@@ -149,7 +149,8 @@ workspace 🐮 output $monitor3
 bindsym $mod+Shift+n move container to workspace 🐮
 bindsym $mod+n workspace 🐮
 
-# exec_always i3 gaps inner all plus 5
+exec_always i3 gaps inner all plus 2
+exec_always i3 gaps outer all plus 5
 
 # change focus
 bindsym $mod+h focus left
@@ -184,6 +185,7 @@ bindsym $mod+Shift+v split h
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+#bindsym $mod+Shift+f exec "xdotool key F11 && xdotool key $mod+f"
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
