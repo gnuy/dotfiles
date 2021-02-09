@@ -89,8 +89,8 @@ exec_always --no-startup-id dunst
 # Shutter
 # exec --no-startup-id shutter
 
-# exec compton --config ~/.i3/compton.conf
-exec compton --backend glx --vsync opengl-swc -b
+exec_always compton --config ~/.i3/compton.conf -b
+# exec compton --backend glx --vsync opengl-swc -b
 
 #notifications
 exec /usr/lib/notification-daemon/notification-daemon 
@@ -124,8 +124,8 @@ bindsym $mod+Shift+y exec surf $(xclip -selection clipboard -o)
  bindsym $mod+Shift+p exec "i3lock --color 000000"
 #bindsym $mod+Shift+p exec "i3lock  -e -t -i /home/gabrieln/Pictures/Wallpapers/BpTwvHA.png"
 
-set $monitor1 eDP-1
-set $monitor2 HDMI1 HDMI-2
+set $monitor1 eDP-1 eDP1
+set $monitor2 HDMI1 HDMI-2 HDMI2
 set $monitor3 DP-1
 
 workspace 1 output $monitor1 
