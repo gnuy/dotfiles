@@ -84,16 +84,24 @@ exec_always "setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option
 #exec_always feh --bg-fill $HOME/Pictures/Wallpapers/BpTwvHA.png
 
 # Notifications daemon
-exec_always --no-startup-id dunst
+# exec_always --no-startup-id killall dunst && dunst
+exec_always [class="Dunst"] kill ;  dunst
 
 # Shutter
 # exec --no-startup-id shutter
 
 # exec compton --config ~/.i3/compton.conf
-exec compton --backend glx --vsync opengl-swc -b
-
+# exec compton --backend glx --vsync opengl-swc -b
+  exec compton -b
 #notifications
 exec /usr/lib/notification-daemon/notification-daemon 
+
+
+assign [class="^mpv$"] → 10
+
+
+# blueman
+exec blueman-applet
 
 # Iceweasel
 bindsym $mod+i exec iceweasel -new-window
@@ -105,7 +113,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Print Screen
-bindsym Print exec gnome-screenshot
+bindsym Print exec flameshot gui
 bindsym $mod+Print exec gnome-screenshot -i
 bindsym $mod+Shift+Print exec deepin-screenshot
 
@@ -118,13 +126,15 @@ bindsym $mod+x exec getxid
 
 # Abrir video youtube
 bindsym $mod+y exec mpv $(xclip -selection clipboard -o) & notify-send "mpv running $(xclip -selection clipboard -o)" 
-bindsym $mod+Shift+y exec surf $(xclip -selection clipboard -o)
+bindsym $mod+Shift+y exec mpv --ytdl-format='\''bestvideo[ext=mp4][width<=1280][height<=720]+bestaudio[ext=m4a]' $(xclip -selection clipboard -o) & notify-send "mpv running $(xclip -selection clipboard -o) in 720p"  
+
+#bindsym $mod+Shift+y exec surf $(xclip -selection clipboard -o)
 
 # Bloquear PC
  bindsym $mod+Shift+p exec "i3lock --color 000000"
 #bindsym $mod+Shift+p exec "i3lock  -e -t -i /home/gabrieln/Pictures/Wallpapers/BpTwvHA.png"
 
-set $monitor1 eDP-1
+set $monitor1 eDP1 eDP-1
 set $monitor2 HDMI1 HDMI-2
 set $monitor3 DP-1
 
