@@ -1,0 +1,16 @@
+! Remap caps lock to special modifier, but still allow shift+caps to toggle caps lock
+clear lock
+clear mod3
+clear mod4
+add lock = Mode_switch
+! add lock = Hyper_L
+! keycode 66 = Mode_switch Caps_Lock NoSymbol NoSymbol
+keycode 66 = Mode_switch Caps_Lock NoSymbol NoSymbol
+! add mod3 = Hyper_L
+
+add mod4 = Super_L Super_R
+keycode 43 = h H Left Left Left
+keycode 44 = j J Down Down Down
+keycode 45 = k K Up Up Up
+keycode 46 = l L Right Right Right
+
