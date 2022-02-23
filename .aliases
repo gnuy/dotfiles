@@ -1,0 +1,27 @@
+play_with_subs () {
+	pirate-get -C "peerflix %s --mpv --subtitles $(subdivx-get -7 "$@")" "$@"
+}
+
+alias lsuuid="lsblk -o +uuid"
+alias pi="ssh pi@pi"
+alias fossgang="ssh agbo@fossgang.org"
+alias mpv720="mpv --ytdl-format 22"
+alias dos7="VBoxManage startvm windows7_default_1552419914465_23914"
+alias please="sudo"
+alias terminator="terminator -H"
+alias record-screen="ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0 output-$(date +%F-%N).mkv"
+alias mpv480='mpv --ytdl-format='\''bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]'\'
+alias mpv720='mpv --ytdl-format='\''bestvideo[ext=mp4][width<=1280][height<=720]+bestaudio[ext=m4a]'\'
+alias mpv1080='mpv --ytdl-format='\''bestvideo[ext=mp4][width<=1920][height<=1080]+bestaudio[ext=m4a]'\'
+alias commit_message='curl -s http://whatthecommit.com/index.txt'
+alias play='pirate-get -C "peerflix %s --mpv"'
+alias mtgcalc='cut -f4 | cut -d\  -f2 | grep "^[0-9]" | awk '\''{ sum += $1; }  END { print sum; }'\'' "$@"'
+alias zoom="bash ~/docker-zoom-us/scripts/zoom-us-wrapper zoom"
+alias mtg-arena="env LUTRIS_SKIP_INIT=1 lutris lutris:rungameid/74"
+alias getxid="xdotool getactivewindow | xclip -selection clipboard"
+alias killsteam="ps -eo pid,command | grep steam | sed 's/^ //g' | cut -d\  -f1 | head --lines=-1 | xargs kill"
+alias tmatrix="tmatrix -c default -t ''"
+# alias docker="sudo docker"
+# alias docker-compose="sudo docker-compose"
+alias play='play_with_subs'
+alias godot_nv='optirun -b primus godot'
