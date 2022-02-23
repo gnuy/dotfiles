@@ -93,9 +93,10 @@ exec --no-startup-id nm-applet
 # Monitor
 exec --no-startup-id monitor
 
+# Hyper key
 # Altgr-intl keyboard
 # exec --no-startup-id setxkbmap -layout us -variant altgr-intl
-exec_always "setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option compose:rctrl"
+exec_always "setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option compose:rctrl && xmodmap ~/.Xmodmap"
 
 # Wallpaper 
  exec --no-startup-id nitrogen --restore
@@ -113,10 +114,8 @@ exec_always --no-startup-id dunst
 #notifications
 exec /usr/lib/notification-daemon/notification-daemon 
 
-# Hyper key
-exec_always "xmodmap ~/.Xmodmap"
-
-exec_always xinput set-prop "pointer:Logitech MX Ergo"  "Coordinate Transformation Matrix" 2 0 0 0 2 0 0 0 1
+# Logitech MX Ergo 2x sensibility
+exec_always xinput set-prop "pointer:Logitech MX Ergo" "Coordinate Transformation Matrix" 2 0 0 0 2 0 0 0 1
 exec_always xinput set-prop "pointer:Logitech MX Ergo Multi-Device Trackball "  "Coordinate Transformation Matrix" 2 0 0 0 2 0 0 0 1
 
 assign [class="^mpv$"] → 10
