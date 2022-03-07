@@ -1,9 +1,11 @@
 include "%L"
 
 <Multi_key> <e> <y>		: "👀"
+<Multi_key> <f> <i>		: "🔥"
 <Multi_key> <h> <a>		: "😂"
 <Multi_key> <i> <t>		: "🤌"
 <Multi_key> <p> <e>		: "🐧"
+<Multi_key> <p> <o>		: "🐥"
 <Multi_key> <p> <r>		: "👉"
 <Multi_key> <s> <g>		: "😎"
 <Multi_key> <s> <q>		: "🦑"
