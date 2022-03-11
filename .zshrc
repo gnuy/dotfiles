@@ -121,3 +121,6 @@ PATH="/home/agbo/go/bin${PATH:+:${PATH}}"
  if [ -f /etc/bash.command-not-found ]; then
 	. /etc/bash.command-not-found
  fi
+
+ hash -d luisa=$HOME/luisa/captcha
+ hash -d subdivx-get=$HOME/go/src/github.com/gnuy/subdivx-get
